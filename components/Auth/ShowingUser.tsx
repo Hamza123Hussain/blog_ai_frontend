@@ -12,7 +12,7 @@ const ShowingUser = ({ User }: { User: UserDetails }) => {
       const Data = await SignOut()
       if (Data) {
         setUserData('')
-        Router.push('/Login')
+        Router.push('/login')
       }
     } catch (error) {
       console.log('ERROR IN FUNCTION', error)
