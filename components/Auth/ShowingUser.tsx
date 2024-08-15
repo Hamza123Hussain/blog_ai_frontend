@@ -1,33 +1,19 @@
-import { SignOut } from '@/functions/AUTH/SignOut'
-import { UserContext } from '@/utils/Context'
 import { UserDetails } from '@/utils/UserInterface'
-import { useRouter } from 'next/navigation'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
+import UserDropDown from './UserDropDown'
 
 const ShowingUser = ({ User }: { User: UserDetails }) => {
-  const { setUserData } = useContext(UserContext)
-  const Router = useRouter()
-  const ByeBye = async () => {
-    try {
-      const Data = await SignOut()
-      if (Data) {
-        setUserData('')
-        Router.push('/login')
-      }
-    } catch (error) {
-      console.log('ERROR IN FUNCTION', error)
-    }
-  }
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+
   return (
-    <div className=" flex gap-2 items-center   text-white">
-      <h6 className=" text-base text-white capitalize">{User.Name}</h6>
-      <button
-        onClick={ByeBye}
-        className=" bg-black sm:px-7 px-2 text-red-600 hover:text-black hover:bg-red-500 hover:border-2 hover:border-white rounded-lg"
+    <div className="relative text-white">
+      <div
+        className="flex items-center cursor-pointer"
+        onMouseEnter={() => setDropdownOpen(true)}
       >
-        {' '}
-        Sign Out
-      </button>
+        <h6 className="text-base capitalize">{User.Name}</h6>
+      </div>
+      {dropdownOpen && <UserDropDown setDropdownOpen={setDropdownOpen} />}
     </div>
   )
 }
