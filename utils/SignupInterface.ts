@@ -3,3 +3,4 @@ export interface InputValues {
   password: string
   Name: string
 }
+export const APIURL = 'http://localhost:5000'
