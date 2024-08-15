@@ -11,7 +11,8 @@ export const RegisterUser = async (InputValues: InputValues) => {
       Name,
     })
     if (Response.status === 201) {
-      console.log('API RESPONDED :', Response.data)
+      // console.log('API RESPONDED :', Response.data)
+      return Response.data
     }
   } catch (error) {
     console.log('ERROR IN FUNCTION : ', error)
