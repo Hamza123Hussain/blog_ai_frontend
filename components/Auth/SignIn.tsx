@@ -18,6 +18,7 @@ const SignIn = () => {
     if (Data) {
       setUserData(Data)
       console.log('USER DATA ', Data)
+      Router.push('/')
     }
   }
   return (
