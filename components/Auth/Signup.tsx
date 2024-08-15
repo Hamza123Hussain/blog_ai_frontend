@@ -34,7 +34,7 @@ const SignUp = () => {
       <h6 className="text-xs text-center text-gray-400 mt-4">
         Already Have An Account? Click Here To{' '}
         <span
-          onClick={() => Router.push('/Login')}
+          onClick={() => Router.push('/login')}
           className="underline cursor-pointer text-blue-400 hover:text-blue-500 transition-all duration-300"
         >
           Log In
