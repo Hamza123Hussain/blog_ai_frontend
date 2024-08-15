@@ -19,7 +19,7 @@ const config = {
     },
     extend: {
       colors: {
-        customBg: '#E0ECD4', // Add your custom color here
+        customBg: '#e4c5c2', // Add your custom color here
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
