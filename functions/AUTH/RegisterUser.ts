@@ -1,5 +1,6 @@
 import { APIURL, InputValues } from '@/utils/SignupInterface'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 export const RegisterUser = async (InputValues: InputValues) => {
   const { email, password, Name } = InputValues
@@ -17,7 +18,9 @@ export const RegisterUser = async (InputValues: InputValues) => {
       Response.status === 400 &&
       Response.data.message === 'Email already in use'
     ) {
-      alert('This email is already registered. Please use a different email.')
+      toast.error(
+        'This email is already registered. Please use a different email.'
+      )
     } else if (Response.status === 500) {
       alert('Internal server error. Please try again later.')
     }
