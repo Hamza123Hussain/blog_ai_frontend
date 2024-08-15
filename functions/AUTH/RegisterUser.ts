@@ -26,6 +26,6 @@ export const RegisterUser = async (InputValues: InputValues) => {
     }
   } catch (error) {
     console.log('ERROR IN FUNCTION : ', error)
-    alert('Email Already Registered')
+    toast.error('Email Already Registered')
   }
 }
