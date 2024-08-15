@@ -1,5 +1,7 @@
 import { APIURL } from '@/utils/SignupInterface'
 import axios from 'axios'
+import { showCustomToast } from '../CustomToast'
+import toast from 'react-hot-toast'
 
 export const LoginUser = async (Inputvalue: any) => {
   const { email, password } = Inputvalue
@@ -17,7 +19,7 @@ export const LoginUser = async (Inputvalue: any) => {
   } catch (error: any) {
     if (error.response) {
       if (error.response.status === 401) {
-        alert('Incorrect email or password entered')
+        toast.error('Incorrect email or password entered')
       } else if (error.response.status === 500) {
         // alert('Incorrect Email or Password Entered.')
         console.error('Server error:', error.response.data)
