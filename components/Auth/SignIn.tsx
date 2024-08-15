@@ -1,19 +1,24 @@
 'use client'
 import { LoginUser } from '@/functions/AUTH/LoginUser'
+import { UserContext } from '@/utils/Context'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 const SignIn = () => {
   const [inputVal, setInputVal] = useState({
     email: '',
     password: '',
   })
   const Router = useRouter()
-
+  const { setUserData } = useContext(UserContext)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputVal((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
   const HandleLogin = async () => {
     const Data = await LoginUser(inputVal)
+    if (Data) {
+      setUserData(Data)
+      console.log('USER DATA ', Data)
+    }
   }
   return (
     <div className="flex flex-col bg-gray-800 p-6 rounded-lg shadow-lg  mx-auto ">
