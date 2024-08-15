@@ -1,4 +1,5 @@
 'use client'
+import { LoginUser } from '@/functions/AUTH/LoginUser'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 const SignIn = () => {
@@ -11,9 +12,11 @@ const SignIn = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputVal((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
-
+  const HandleLogin = async () => {
+    const Data = await LoginUser(inputVal)
+  }
   return (
-    <div className="flex flex-col bg-gray-800 p-6 rounded-lg shadow-lg max-w-md mx-auto ">
+    <div className="flex flex-col bg-gray-800 p-6 rounded-lg shadow-lg  mx-auto ">
       <h2 className="text-3xl font-semibold text-white mb-6">Sign In</h2>
       <input
         type="email"
@@ -31,7 +34,10 @@ const SignIn = () => {
         onChange={handleChange}
         className="mb-4 p-3 w-80 rounded bg-slate-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-300"
       />
-      <button className="bg-green-500 hover:bg-green-400 text-white font-semibold px-6 py-2 rounded transition-all w-80">
+      <button
+        onClick={HandleLogin}
+        className="bg-green-500 hover:bg-green-400 text-white font-semibold px-6 py-2 rounded transition-all w-80"
+      >
         Sign In
       </button>
       <h6 className="text-xs mt-4 text-gray-400 text-center">
