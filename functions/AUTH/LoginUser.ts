@@ -9,7 +9,8 @@ export const LoginUser = async (Inputvalue: any) => {
       password,
     })
     if (Response.status === 200) {
-      console.log('API HAS RESPONDED : ', Response.data)
+      //   console.log('API HAS RESPONDED : ', Response.data)
+      return Response.data
     }
   } catch (error) {
     console.log('FUNCTION ERROR', error)
