@@ -24,7 +24,7 @@ export default function RootLayout({
         <div className="flex flex-col min-h-screen">
           <ContextProvider>
             <Navbar />
-            <main className="flex-grow flex items-center justify-center">
+            <main className="flex-grow flex ">
               {children}
               <Toaster />
             </main>
