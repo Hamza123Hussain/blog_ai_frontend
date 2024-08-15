@@ -1,10 +1,13 @@
 'use client'
+import { UserContext } from '@/utils/Context'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useContext } from 'react'
+import ShowingUser from './Auth/ShowingUser'
 
 const Navbar = () => {
   const Router = useRouter()
+  const { userData } = useContext(UserContext)
   return (
     <div className=" bg-customBg px-2 flex justify-between items-center ">
       <div className=" flex items-center gap-2">
@@ -17,12 +20,16 @@ const Navbar = () => {
         />
         <h3 className=" text-base text-white">Thought Flow</h3>
       </div>{' '}
-      <button
-        onClick={() => Router.push('/Signup')}
-        className="bg-green-300 px-7 border-white hover:bg-white hover:text-black text-white rounded-lg   "
-      >
-        Login
-      </button>
+      {userData ? (
+        <ShowingUser User={userData} />
+      ) : (
+        <button
+          onClick={() => Router.push('/Signup')}
+          className="bg-green-300 px-7 border-white hover:bg-white hover:text-black text-white rounded-lg   "
+        >
+          Login
+        </button>
+      )}
     </div>
   )
 }
