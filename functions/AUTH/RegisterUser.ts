@@ -10,11 +10,19 @@ export const RegisterUser = async (InputValues: InputValues) => {
       password,
       Name,
     })
+
     if (Response.status === 201) {
-      // console.log('API RESPONDED :', Response.data)
       return Response.data
+    } else if (
+      Response.status === 400 &&
+      Response.data.message === 'Email already in use'
+    ) {
+      alert('This email is already registered. Please use a different email.')
+    } else if (Response.status === 500) {
+      alert('Internal server error. Please try again later.')
     }
   } catch (error) {
     console.log('ERROR IN FUNCTION : ', error)
+    alert('Email Already Registered')
   }
 }
