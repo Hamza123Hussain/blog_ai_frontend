@@ -49,7 +49,7 @@ const SignIn = () => {
       <h6 className="text-xs mt-4 text-gray-400 text-center">
         Don’t Have An Account?{' '}
         <span
-          onClick={() => Router.push('/Signup')}
+          onClick={() => Router.push('/signup')}
           className="underline cursor-pointer text-green-300 hover:text-green-200"
         >
           Sign Up
