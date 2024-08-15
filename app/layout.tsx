@@ -4,6 +4,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContextProvider from '@/utils/Context'
+import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,6 +26,7 @@ export default function RootLayout({
             <Navbar />
             <main className="flex-grow flex items-center justify-center">
               {children}
+              <Toaster />
             </main>
             <Footer />
           </ContextProvider>
