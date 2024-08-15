@@ -46,6 +46,12 @@ const SignIn = () => {
       >
         Sign In
       </button>
+      <div
+        className=" flex justify-end text-white mt-1 hover:text-blue-900 cursor-pointer"
+        onClick={() => Router.push('/forgotpass')}
+      >
+        <span className=" text-[10px]">Forgot Your Password?</span>
+      </div>
       <h6 className="text-xs mt-4 text-gray-400 text-center">
         Don’t Have An Account?{' '}
         <span
