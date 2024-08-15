@@ -2,14 +2,18 @@
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import SignUpTextFields from './SignupFields'
+import { InputValues } from '@/utils/SignupInterface'
+import { RegisterUser } from '@/functions/AUTH/RegisterUser'
 
 const SignUp = () => {
-  const [inputVal, setInputVal] = useState({
+  const [inputVal, setInputVal] = useState<InputValues>({
     email: '',
     password: '',
     Name: '',
   })
-
+  const HandleSignup = async () => {
+    const Data = await RegisterUser(inputVal)
+  }
   const Router = useRouter()
 
   return (
@@ -18,7 +22,10 @@ const SignUp = () => {
         Sign Up
       </h2>
       <SignUpTextFields inputVal={inputVal} setInputVal={setInputVal} />
-      <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg shadow-md transition-all duration-300 mt-4">
+      <button
+        onClick={HandleSignup}
+        className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg shadow-md transition-all duration-300 mt-4"
+      >
         Sign Up
       </button>
       <h6 className="text-xs text-center text-gray-400 mt-4">
