@@ -3,7 +3,7 @@ import { FaRegCommentDots } from 'react-icons/fa'
 
 const BlogCard = () => {
   return (
-    <div className="flex flex-col w-full max-w-3xl p-6 border border-gray-300 rounded-lg shadow-lg bg-white ">
+    <div className="flex flex-col w-full max-w-3xl justify-center p-6 border border-gray-300 rounded-lg shadow-lg bg-white ">
       <div className=" flex flex-col sm:flex-row items-center justify-between">
         <div className="flex gap-3 items-center">
           <img
