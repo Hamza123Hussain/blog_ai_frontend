@@ -1,14 +1,10 @@
 import { APIURL } from '@/utils/SignupInterface'
 import axios from 'axios'
 
-export const CreateBlog = async (
-  text: string,
-  email: string,
-  title: string
-) => {
+export const CreateBlog = async (text: string, Name: string, title: string) => {
   const Response = await axios.post(`${APIURL}/api/Posts`, {
     text,
-    email,
+    Name,
     title,
   })
 
