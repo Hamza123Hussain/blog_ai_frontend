@@ -20,7 +20,7 @@ const CreateANewBlog = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const GetData = await CreateBlog(text, userData.email, title)
+    const GetData = await CreateBlog(text, userData.Name, title)
     if (GetData) {
       toast.success('BLOG HAS BEEN CREATED')
       Router.push('/')
