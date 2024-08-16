@@ -1,8 +1,19 @@
+import { RemoveBlog } from '@/functions/Blog/DeleteBlog'
 import { BLOG } from '@/utils/BlogInterface'
+import { useRouter } from 'next/navigation'
 import React from 'react'
+import toast from 'react-hot-toast'
 import { FaRegCommentDots } from 'react-icons/fa'
 
 const UserBlogCard = ({ Blog }: { Blog: BLOG }) => {
+  const Router = useRouter()
+  const DeleteDoc = async () => {
+    const Removed = await RemoveBlog(Blog.PostID)
+    if (Removed) {
+      toast.success('BLOG HAS BEEN DELETED')
+      window.location.reload()
+    }
+  }
   return (
     <div className="flex flex-col w-full  justify-center p-6 border border-gray-300 rounded-lg shadow-lg bg-white">
       <h2 className="text-2xl font-bold text-gray-900 mb-2">{Blog.Title}</h2>
@@ -38,10 +49,16 @@ const UserBlogCard = ({ Blog }: { Blog: BLOG }) => {
           <FaRegCommentDots /> View Comments
         </button>
         <div className=" flex gap-2 items-center">
-          <button className=" bg-blue-600 px-6 py-1 text-white rounded-lg">
+          <button
+            onClick={() => Router.push(`/Blog/Update/${Blog.PostID}`)}
+            className=" bg-blue-600 px-6 py-1 text-white rounded-lg"
+          >
             Update
           </button>{' '}
-          <button className=" bg-red-600 px-6 py-1 text-white rounded-lg">
+          <button
+            onClick={DeleteDoc}
+            className=" bg-red-600 px-6 py-1 text-white rounded-lg"
+          >
             Delete
           </button>
         </div>
