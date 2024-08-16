@@ -31,7 +31,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col gap-6 py-4 px-2 sm:px-4 lg:px-6">
+    <div className="flex flex-col gap-6 p-4 mx-auto">
       {AllBlogs.map((element) => (
         <BlogCard key={element.id} Blog={element} />
       ))}
