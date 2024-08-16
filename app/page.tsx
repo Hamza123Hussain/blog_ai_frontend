@@ -9,18 +9,18 @@ import { useContext, useEffect, useState } from 'react'
 
 export default function Home() {
   const [AllBlogs, SetBlogs] = useState<BLOG[]>([])
-  const [loading, setloading] = useState(false)
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     const GetBlogs = async () => {
-      setloading(true)
+      setLoading(true)
       const Data = await GettingAllBlogs()
       try {
         if (Data) {
-          setloading(false)
+          setLoading(false)
           SetBlogs(Data)
         }
       } catch (error) {
-        setloading(false)
+        setLoading(false)
         console.log('FUNCTION ERROR ', error)
       }
     }
