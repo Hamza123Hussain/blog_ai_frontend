@@ -24,7 +24,7 @@ const UserDropDown = ({ setDropdownOpen }: { setDropdownOpen: any }) => {
       className="absolute right-0 mt-2 w-48 bg-white text-black shadow-md rounded-lg z-10"
     >
       <Link
-        href="/dashboard"
+        href="/DashBoard"
         className="block px-4 py-2 text-sm hover:bg-gray-100"
       >
         My Blogs
