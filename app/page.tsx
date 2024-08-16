@@ -1,5 +1,6 @@
 'use client'
 import BlogCard from '@/components/Blog/BlogCard'
+import LandingPage from '@/components/LandingPage'
 import Loader from '@/components/Loader'
 import { GettingAllBlogs } from '@/functions/Blog/GettingAll'
 import { BLOG } from '@/utils/BlogInterface'
@@ -30,10 +31,11 @@ export default function Home() {
   }
 
   return (
-    <div className=" flex flex-col gap-5 py-4 mx-auto ">
-      {AllBlogs.map((element) => {
-        return <BlogCard key={element.id} Blog={element} />
-      })}
-    </div>
+    // <div className=" flex flex-col gap-5 py-4 mx-auto ">
+    //   {AllBlogs.map((element) => {
+    //     return <BlogCard key={element.id} Blog={element} />
+    //   })}
+    // </div>
+    <LandingPage />
   )
 }
