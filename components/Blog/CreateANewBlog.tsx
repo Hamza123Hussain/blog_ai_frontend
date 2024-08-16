@@ -73,13 +73,14 @@ const CreateANewBlog = () => {
             className="file:border file:border-gray-300 file:rounded-lg file:px-4 file:py-2 file:text-gray-700 file:bg-gray-50 file:hover:bg-gray-100"
           />
         </div> */}
-
-        <button
-          type="submit"
-          className="w-full bg-customBg text-white py-3 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-dusty-rose"
-        >
-          Submit
-        </button>
+        <div>
+          <button
+            type="submit"
+            className="w-full bg-customBg text-white py-3 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-dusty-rose"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   )
