@@ -1,7 +1,8 @@
 'use client'
+import { GETDoc } from '@/functions/Blog/GettingDoc'
 import { UpdateBlogs } from '@/functions/Blog/UpdateBlog'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 const UpdateBlog = ({ params }: { params: any }) => {
@@ -30,7 +31,12 @@ const UpdateBlog = ({ params }: { params: any }) => {
       Router.push('/dashboard')
     }
   }
-
+  const gETDATA = async () => {
+    const Data = await GETDoc(params.ID)
+  }
+  useEffect(() => {
+    gETDATA()
+  }, [])
   return (
     <div className="w-full  bg-white p-8 rounded-lg shadow-md">
       <h2 className="text-3xl font-semibold text-gray-800 mb-6">Update Blog</h2>
