@@ -1,20 +1,34 @@
 'use client'
 import BlogCard from '@/components/Blog/BlogCard'
+import Loader from '@/components/Loader'
 import { GettingAllBlogs } from '@/functions/Blog/GettingAll'
 import { BLOG } from '@/utils/BlogInterface'
-import { useEffect, useState } from 'react'
+import { UserContext } from '@/utils/Context'
+import { useContext, useEffect, useState } from 'react'
 
 export default function Home() {
   const [AllBlogs, SetBlogs] = useState<BLOG[]>([])
+  const { setloading, loading } = useContext(UserContext)
   useEffect(() => {
     const GetBlogs = async () => {
+      setloading(true)
       const Data = await GettingAllBlogs()
-      if (Data) {
-        SetBlogs(Data)
+      try {
+        if (Data) {
+          setloading(false)
+          SetBlogs(Data)
+        }
+      } catch (error) {
+        setloading(false)
+        console.log('FUNCTION ERROR ', error)
       }
     }
     GetBlogs()
   }, [])
+  if (loading) {
+    return <Loader />
+  }
+
   return (
     <div className=" flex flex-col gap-5 py-4 mx-auto ">
       {AllBlogs.map((element) => {
