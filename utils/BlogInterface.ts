@@ -6,4 +6,5 @@ export interface BLOG {
   Title: string
   comments: any
   id: string
+  UserName: string
 }
