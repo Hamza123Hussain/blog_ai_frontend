@@ -9,7 +9,7 @@ import { useContext, useEffect, useState } from 'react'
 
 export default function Home() {
   const [AllBlogs, SetBlogs] = useState<BLOG[]>([])
-  const { setloading, loading } = useContext(UserContext)
+  const [loading, setloading] = useState(false)
   useEffect(() => {
     const GetBlogs = async () => {
       setloading(true)
@@ -31,11 +31,10 @@ export default function Home() {
   }
 
   return (
-    // <div className=" flex flex-col gap-5 py-4 mx-auto ">
-    //   {AllBlogs.map((element) => {
-    //     return <BlogCard key={element.id} Blog={element} />
-    //   })}
-    // </div>
-    <LandingPage />
+    <div className=" flex flex-col gap-5 py-4 mx-auto ">
+      {AllBlogs.map((element) => {
+        return <BlogCard key={element.id} Blog={element} />
+      })}
+    </div>
   )
 }
