@@ -4,6 +4,7 @@ import { createContext, ReactNode, useEffect, useState } from 'react'
 export const UserContext = createContext<any>(null)
 
 const ContextProvider = ({ children }: { children: ReactNode }) => {
+  const [loading, setloading] = useState(false)
   const [userData, setUserData] = useState<any>(() => {
     try {
       const storedData = localStorage.getItem('userData')
@@ -19,7 +20,9 @@ const ContextProvider = ({ children }: { children: ReactNode }) => {
   }, [userData])
 
   return (
-    <UserContext.Provider value={{ userData, setUserData }}>
+    <UserContext.Provider
+      value={{ userData, setUserData, loading, setloading }}
+    >
       {children}
     </UserContext.Provider>
   )
