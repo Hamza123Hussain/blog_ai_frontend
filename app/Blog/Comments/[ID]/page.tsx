@@ -2,11 +2,11 @@
 import CommentCard from '@/components/Blog/CommentCard'
 import SingleCard from '@/components/Blog/SingleCard'
 import Loader from '@/components/Loader'
-import { Addcomment } from '@/functions/Blog/AddingComment'
+import { CreateWithAIComment } from '@/functions/Blog/CallingAI'
+import { Addcomment } from '@/functions/Blog/Comment'
 import { GETDoc } from '@/functions/Blog/GettingDoc'
 import { BLOG, CommentData } from '@/utils/BlogInterface'
 import { UserContext } from '@/utils/Context'
-import { Trash2Icon } from 'lucide-react'
 import React, { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -32,9 +32,15 @@ const BlogWithComments = ({ params }: { params: any }) => {
       setComment('')
     }
   }
+
   useEffect(() => {
     gETDATA()
   }, [flag])
+
+  const callAi = async () => {
+    const Data = await CreateWithAIComment(comment)
+    if (Data) setComment(Data)
+  }
 
   if (loading) {
     return <Loader />
@@ -53,7 +59,10 @@ const BlogWithComments = ({ params }: { params: any }) => {
         />
         <div className="flex gap-4">
           {' '}
-          <button className="py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none">
+          <button
+            onClick={callAi}
+            className="py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none"
+          >
             Generate Comment with AI
           </button>
           <button
@@ -63,9 +72,20 @@ const BlogWithComments = ({ params }: { params: any }) => {
             Add Comment
           </button>
         </div>
-        {element?.comments.map((comment: CommentData) => {
-          return <CommentCard key={comment.CommentID} comment={comment} />
-        })}
+        {element?.comments && element.comments.length > 0 ? (
+          element.comments.map((comment: CommentData) => (
+            <CommentCard
+              key={comment.CommentID}
+              PostId={params.ID}
+              setflag={setflag}
+              comment={comment}
+            />
+          ))
+        ) : (
+          <p className="text-gray-500 text-center mt-4 bg-gray-200 p-2 rounded-lg w-full">
+            No comments on this blog
+          </p>
+        )}
       </div>
     </div>
   )
