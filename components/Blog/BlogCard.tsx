@@ -1,8 +1,10 @@
 import { BLOG } from '@/utils/BlogInterface'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 import { FaRegCommentDots } from 'react-icons/fa'
 
 const BlogCard = ({ Blog }: { Blog: BLOG }) => {
+  const Router = useRouter()
   return (
     <div className="flex flex-col w-full max-w-3xl justify-center p-6 border border-gray-300 rounded-lg shadow-lg bg-white">
       <h2 className="text-2xl font-bold text-gray-900 mb-2">{Blog.Title}</h2>
@@ -34,7 +36,10 @@ const BlogCard = ({ Blog }: { Blog: BLOG }) => {
         {Blog.Text}
       </p>
       <div className="flex justify-between items-center">
-        <button className="flex items-center gap-2 py-2 px-4 bg-customBg text-white rounded-lg hover:bg-rose-900 focus:outline-none">
+        <button
+          onClick={() => Router.push(`/Blog/Comments/${Blog.PostID}`)}
+          className="flex items-center gap-2 py-2 px-4 bg-customBg text-white rounded-lg hover:bg-rose-900 focus:outline-none"
+        >
           <FaRegCommentDots /> View Comments
         </button>
       </div>
