@@ -1,4 +1,5 @@
 import { BLOG } from '@/utils/BlogInterface'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { FaRegCommentDots } from 'react-icons/fa'
@@ -11,12 +12,12 @@ const BlogCard = ({ Blog }: { Blog: BLOG }) => {
 
       <div className="flex flex-col sm:flex-row items-center justify-between mb-4">
         <div className="flex gap-3 items-center">
-          <img
-            src="https://www.brandsynario.com/wp-content/uploads/2024/03/Hania-Amir-2.jpg"
-            alt="demo"
-            width={50}
-            height={50}
-            className="rounded-full border-2 border-gray-200"
+          <Image
+            src={Blog.UserImage}
+            alt="Logo"
+            width={25}
+            height={10}
+            className="rounded-full"
           />
           <h6 className="text-lg font-semibold flex items-center gap-2 text-gray-800">
             {Blog.CreatedBy}
