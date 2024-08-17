@@ -1,7 +1,8 @@
 'use client'
+import CreateBlogFields from '@/components/Blog/CreateBlogFields'
 import Loader from '@/components/Loader'
 import { CreateWithAI } from '@/functions/Blog/CallingAI'
-import CreateBlogFields from '@/functions/Blog/CreateBlogFields'
+
 import { GETDoc } from '@/functions/Blog/GettingDoc'
 import { UpdateBlogs } from '@/functions/Blog/UpdateBlog'
 import { BlogCreate } from '@/utils/BlogCreation'

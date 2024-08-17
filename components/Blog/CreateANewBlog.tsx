@@ -5,7 +5,7 @@ import { CreateBlog } from '@/functions/Blog/CreatingABlog'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 import { BlogCreate } from '@/utils/BlogCreation'
-import CreateBlogFields from '@/functions/Blog/CreateBlogFields'
+import CreateBlogFields from './CreateBlogFields'
 
 const WriteWithAI = () => {
   const { userData } = useContext(UserContext)
