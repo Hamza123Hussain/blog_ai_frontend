@@ -4,7 +4,14 @@ export interface BLOG {
   PostID: string
   Text: string
   Title: string
-  comments: any
+  comments: CommentData[]
   id: string
+  UserName: string
+}
+export interface CommentData {
+  CommentID: string
+  CreatedAt: number
+  Text: string
+  UserID: string
   UserName: string
 }
