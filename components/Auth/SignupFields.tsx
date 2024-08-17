@@ -6,17 +6,32 @@ const SignUpTextFields = ({
   setInputVal,
 }: {
   inputVal: InputValues
-  setInputVal: any
+  setInputVal: React.Dispatch<React.SetStateAction<InputValues>>
 }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputVal((prev: InputValues) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }))
+    if (e.target.type === 'file') {
+      setInputVal((prev: any) => ({
+        ...prev,
+        Image: e.target.files?.[0],
+      }))
+    } else {
+      setInputVal((prev: InputValues) => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }))
+    }
+    console.log('INPUIT VALUES', inputVal)
   }
 
   return (
     <>
+      {' '}
+      <input
+        type="file"
+        name="Image"
+        onChange={handleChange}
+        className="mb-3 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
       <input
         type="text"
         placeholder="Enter Name"
@@ -39,7 +54,7 @@ const SignUpTextFields = ({
         name="password"
         value={inputVal.password}
         onChange={handleChange}
-        className="p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="mb-3 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
     </>
   )
