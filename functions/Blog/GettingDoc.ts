@@ -6,7 +6,7 @@ export const GETDoc = async (ID: String) => {
   try {
     if (Response.status === 200) {
       console.log('API RESPONSED ', Response.data)
-      //   return Response.data
+      return Response.data
     }
   } catch (error) {
     console.log('FUNCTION ERROR', error)
