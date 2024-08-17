@@ -22,7 +22,8 @@ const WriteWithAI = () => {
       CreateValue.Text,
       userData.Name,
       CreateValue.Title,
-      userData.email
+      userData.email,
+      userData.imageUrl
     )
     if (GetData) {
       toast.success('BLOG HAS BEEN CREATED')
