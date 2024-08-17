@@ -2,7 +2,6 @@
 import { useRouter } from 'next/navigation'
 import React, { useContext } from 'react'
 import SignUpTextFields from './SignupFields'
-import { InputValues } from '@/utils/SignupInterface'
 import { RegisterUser } from '@/functions/AUTH/RegisterUser'
 import { UserContext } from '@/utils/Context'
 import Loader from '../Loader'
