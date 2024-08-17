@@ -26,7 +26,7 @@ const CreateBlogFields = ({
           name="Title"
           value={CreateValue.Title}
           onChange={(e) => HandleChange(e)}
-          placeholder="Enter blog title"
+          placeholder="Enter blog title. If you want to use AI to Generate then Give it a reasonable prompt"
           className="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-dusty-rose"
         />
       </div>
@@ -41,7 +41,7 @@ const CreateBlogFields = ({
           rows={6}
           value={CreateValue.Text}
           onChange={(e) => HandleChange(e)}
-          placeholder="Enter blog content"
+          placeholder="Enter blog content. If you want to use AI to Generate then Give it a reasonable prompt"
           className="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-dusty-rose"
         />
       </div>
