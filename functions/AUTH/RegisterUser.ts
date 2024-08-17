@@ -2,30 +2,38 @@ import { APIURL, InputValues } from '@/utils/SignupInterface'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-export const RegisterUser = async (InputValues: InputValues) => {
-  const { email, password, Name } = InputValues
+export const RegisterUser = async (inputValues: InputValues) => {
+  const { email, password, Name, Image } = inputValues
 
   try {
-    const Response = await axios.post(`${APIURL}/api/Users`, {
-      email,
-      password,
-      Name,
-    })
+    // Create a FormData object
+    const formData = new FormData()
+    formData.append('email', email)
+    formData.append('password', password)
+    formData.append('Name', Name)
 
-    if (Response.status === 201) {
-      return Response.data
+    // Append the image file if provided
+    if (Image) {
+      formData.append('image', Image)
+    }
+
+    // Send the POST request with FormData
+    const response = await axios.post(`${APIURL}/api/Users`, formData)
+
+    if (response.status === 201) {
+      return response.data
     } else if (
-      Response.status === 400 &&
-      Response.data.message === 'Email already in use'
+      response.status === 400 &&
+      response.data.message === 'Email already in use'
     ) {
       toast.error(
         'This email is already registered. Please use a different email.'
       )
-    } else if (Response.status === 500) {
+    } else if (response.status === 500) {
       alert('Internal server error. Please try again later.')
     }
   } catch (error) {
-    console.log('ERROR IN FUNCTION : ', error)
-    toast.error('Email Already Registered')
+    console.error('ERROR IN FUNCTION : ', error)
+    toast.error('An error occurred. Please try again.')
   }
 }
