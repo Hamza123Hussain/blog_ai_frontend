@@ -1,9 +1,16 @@
 'use client'
 import { createContext, ReactNode, useEffect, useState } from 'react'
+import { InputValues } from './SignupInterface'
 
 export const UserContext = createContext<any>(null)
 
 const ContextProvider = ({ children }: { children: ReactNode }) => {
+  const [inputVal, setInputVal] = useState<InputValues>({
+    email: '',
+    password: '',
+    Name: '',
+    Image: null,
+  })
   const [loading, setLoading] = useState(true) // Start with loading true
   const [userData, setUserData] = useState<any>(() => {
     try {
@@ -32,7 +39,14 @@ const ContextProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <UserContext.Provider
-      value={{ userData, setUserData, loading, setLoading }}
+      value={{
+        userData,
+        setUserData,
+        loading,
+        setLoading,
+        inputVal,
+        setInputVal,
+      }}
     >
       {children}
     </UserContext.Provider>
