@@ -16,14 +16,18 @@ const WriteWithAI = () => {
   })
 
   const Router = useRouter()
-
+  const PlaceHolder = {
+    Title: 'Enter Blog Title',
+    Text: 'Enter Description For Your Blog',
+  }
   const handleSubmit = async () => {
     const GetData = await CreateBlog(
       CreateValue.Text,
       userData.Name,
       CreateValue.Title,
       userData.email,
-      userData.imageUrl
+      userData.imageUrl,
+      CreateValue.Image
     )
     if (GetData) {
       toast.success('BLOG HAS BEEN CREATED')
@@ -37,7 +41,11 @@ const WriteWithAI = () => {
         Create a New Blog With AI
       </h1>
       <div className="w-full space-y-6">
-        <CreateBlogFields CreateValue={CreateValue} SetValue={SetValue} />
+        <CreateBlogFields
+          CreateValue={CreateValue}
+          SetValue={SetValue}
+          PlaceHolder={PlaceHolder}
+        />
         <div className=" flex gap-2">
           {' '}
           <button
