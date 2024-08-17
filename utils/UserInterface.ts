@@ -3,4 +3,5 @@ export interface UserDetails {
   Name: string
   email: string
   userID: string
+  imageUrl: string
 }
