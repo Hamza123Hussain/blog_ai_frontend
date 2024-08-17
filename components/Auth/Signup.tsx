@@ -10,11 +10,12 @@ const SignUp = () => {
     email: '',
     password: '',
     Name: '',
+    Image: null,
   })
   const HandleSignup = async () => {
     const Data = await RegisterUser(inputVal)
     if (Data) {
-      Router.push('/Login')
+      Router.push('/login')
     }
   }
   const Router = useRouter()
