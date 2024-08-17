@@ -1,13 +1,10 @@
 import { InputValues } from '@/utils/SignupInterface'
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, useContext } from 'react'
+import FileField from './FileField'
+import { UserContext } from '@/utils/Context'
 
-const SignUpTextFields = ({
-  inputVal,
-  setInputVal,
-}: {
-  inputVal: InputValues
-  setInputVal: React.Dispatch<React.SetStateAction<InputValues>>
-}) => {
+const SignUpTextFields = () => {
+  const { inputVal, setInputVal } = useContext(UserContext)
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.type === 'file') {
       setInputVal((prev: any) => ({
@@ -25,13 +22,6 @@ const SignUpTextFields = ({
 
   return (
     <>
-      {' '}
-      <input
-        type="file"
-        name="Image"
-        onChange={handleChange}
-        className="mb-3 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
       <input
         type="text"
         placeholder="Enter Name"
@@ -56,6 +46,8 @@ const SignUpTextFields = ({
         onChange={handleChange}
         className="mb-3 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
+
+      <FileField onChange={handleChange} />
     </>
   )
 }
