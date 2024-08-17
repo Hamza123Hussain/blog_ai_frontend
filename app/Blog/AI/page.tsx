@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 import { CreateWithAI } from '@/functions/Blog/CallingAI'
 import { BlogCreate } from '@/utils/BlogCreation'
-
 import Loader from '@/components/Loader'
 import CreateBlogFields from '@/components/Blog/CreateBlogFields'
 
@@ -19,13 +18,17 @@ const WriteWithAI = () => {
   })
 
   const Router = useRouter()
-
+  const PlaceHolder = {
+    Title: 'Enter A Reasonable Prompt to Generate A Blog Title',
+    Text: 'Enter A Reasonable Prompt to Generate A Description For Your Blog',
+  }
   const handleSubmit = async () => {
     const GetData = await CreateBlog(
       CreateValue.Text,
       userData.Name,
       CreateValue.Title,
-      userData.email
+      userData.email,
+      userData.imageUrl
     )
     if (GetData) {
       toast.success('BLOG HAS BEEN CREATED')
@@ -54,7 +57,11 @@ const WriteWithAI = () => {
         Create a New Blog With AI
       </h1>
       <div className="w-full space-y-6">
-        <CreateBlogFields CreateValue={CreateValue} SetValue={SetValue} />
+        <CreateBlogFields
+          PlaceHolder={PlaceHolder}
+          CreateValue={CreateValue}
+          SetValue={SetValue}
+        />
         <div className=" flex gap-2">
           {' '}
           <button
