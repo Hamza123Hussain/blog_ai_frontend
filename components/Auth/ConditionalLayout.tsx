@@ -16,7 +16,10 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   }, [])
 
   // Check if the current route is login or signup
-  const isAuthPage = pathname === '/login' || pathname === '/signup'
+  const isAuthPage =
+    pathname === '/login' ||
+    pathname === '/signup' ||
+    pathname === '/forgotpass'
 
   // Render the layout based on client-side state
   if (!isClient) {
