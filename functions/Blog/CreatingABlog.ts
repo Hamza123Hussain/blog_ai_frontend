@@ -5,13 +5,15 @@ export const CreateBlog = async (
   text: String,
   Name: string,
   title: String,
-  email: string
+  email: string,
+  UserImage: string
 ) => {
   const Response = await axios.post(`${APIURL}/api/Posts`, {
     text,
     Name,
     title,
     email,
+    UserImage,
   })
 
   try {
