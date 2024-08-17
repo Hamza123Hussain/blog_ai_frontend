@@ -1,91 +1,76 @@
 'use client'
+import Loader from '@/components/Loader'
+import { CreateWithAI } from '@/functions/Blog/CallingAI'
+import CreateBlogFields from '@/functions/Blog/CreateBlogFields'
 import { GETDoc } from '@/functions/Blog/GettingDoc'
 import { UpdateBlogs } from '@/functions/Blog/UpdateBlog'
+import { BlogCreate } from '@/utils/BlogCreation'
+import { UserContext } from '@/utils/Context'
 import { useRouter } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 const UpdateBlog = ({ params }: { params: any }) => {
-  //   const [image, setImage] = useState<string | null>(null)
-  const [text, setText] = useState<string>('')
+  const { loading, setLoading } = useContext(UserContext)
+  const [CreateValue, SetValue] = useState<BlogCreate>({
+    Title: '',
+    Image: null,
+    Text: '',
+  })
   const Router = useRouter()
-  //   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     const file = e.target.files?.[0]
-  //     if (file) {
-  //       const reader = new FileReader()
-  //       reader.onloadend = () => {
-  //         setImage(reader.result as string)
-  //       }
-  //       reader.readAsDataURL(file)
-  //     }
-  //   }
-
-  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value)
-  }
 
   const handleSubmit = async () => {
-    const Data = await UpdateBlogs(text, params.ID)
+    const Data = await UpdateBlogs(CreateValue.Text, params.ID)
     if (Data) {
       toast.success('BLOG UPDATED')
-      Router.push('/dashboard')
+      Router.push('/DashBoard')
     }
   }
   const gETDATA = async () => {
+    setLoading(true)
     const Data = await GETDoc(params.ID)
+    if (Data) {
+      SetValue((prev: any) => ({ ...prev, Title: Data.Title, Text: Data.Text }))
+      setLoading(false)
+    }
+  }
+  const CallAI = async () => {
+    setLoading(true)
+    const Data = await CreateWithAI(CreateValue.Title, CreateValue.Text)
+    if (Data) {
+      SetValue((element) => ({
+        ...element,
+        Title: Data.Title,
+        Text: Data.Description,
+      }))
+      setLoading(false)
+    }
   }
   useEffect(() => {
     gETDATA()
   }, [])
+  if (loading) {
+    return <Loader />
+  }
   return (
     <div className="w-full  bg-white p-8 rounded-lg shadow-md">
       <h2 className="text-3xl font-semibold text-gray-800 mb-6">Update Blog</h2>
-
-      <div className="mb-6">
-        {/* <label
-          className="block text-gray-700 text-sm font-bold mb-2"
-          htmlFor="image"
+      <CreateBlogFields CreateValue={CreateValue} SetValue={SetValue} />
+      <div className=" flex gap-2 items-center mt-4">
+        {' '}
+        <button
+          onClick={CallAI}
+          className="w-full bg-customBg text-white py-3 rounded-lg shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-customBg"
         >
-          Blog Image
-        </label>
-        <input
-          type="file"
-          id="image"
-          accept="image/*"
-          onChange={handleImageChange}
-          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-dusty-rose"
-        /> */}
-        {/* {image && (
-          <img
-            src={image}
-            alt="Blog"
-            className="mt-4 rounded-lg max-h-60 mx-auto"
-          />
-        )} */}
-      </div>
-
-      <div className="mb-6">
-        <label
-          className="block text-gray-700 text-sm font-bold mb-2"
-          htmlFor="text"
+          Write With AI
+        </button>
+        <button
+          onClick={handleSubmit}
+          className="w-full bg-customBg text-white py-3 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-customBg"
         >
-          Blog Text
-        </label>
-        <textarea
-          id="text"
-          value={text}
-          onChange={handleTextChange}
-          className="w-full p-4 h-40 border border-gray-300 rounded-lg focus:outline-none focus:border-dusty-rose resize-none"
-          placeholder="Update your blog text here..."
-        />
+          Update Blog
+        </button>{' '}
       </div>
-
-      <button
-        onClick={handleSubmit}
-        className="w-full py-3 bg-customBg text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-rose-500"
-      >
-        Update Blog
-      </button>
     </div>
   )
 }
