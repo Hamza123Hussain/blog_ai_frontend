@@ -1,19 +1,30 @@
 import { BlogCreate } from '@/utils/BlogCreation'
 import React from 'react'
+import FileField from '../Auth/FileField'
 
 const CreateBlogFields = ({
   CreateValue,
   SetValue,
+  PlaceHolder,
 }: {
   CreateValue: BlogCreate
-  SetValue: any
+  SetValue: React.Dispatch<React.SetStateAction<BlogCreate>>
+  PlaceHolder: any
 }) => {
   const HandleChange = (e: any) => {
-    SetValue((prev: BlogCreate) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }))
+    if (e.target.type === 'file') {
+      SetValue((prev: BlogCreate) => ({
+        ...prev,
+        Image: e.target?.files[0],
+      }))
+    } else {
+      SetValue((prev: BlogCreate) => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }))
+    }
   }
+
   return (
     <>
       <div className="flex flex-col gap-2">
@@ -24,9 +35,9 @@ const CreateBlogFields = ({
           id="title"
           type="text"
           name="Title"
-          value={CreateValue.Title}
-          onChange={(e) => HandleChange(e)}
-          placeholder="Enter blog title. If you want to use AI to Generate then Give it a reasonable prompt"
+          value={CreateValue.Title || ''} // Ensure value is not undefined
+          onChange={HandleChange}
+          placeholder={PlaceHolder.Title}
           className="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-dusty-rose"
         />
       </div>
@@ -39,25 +50,13 @@ const CreateBlogFields = ({
           name="Text"
           id="text"
           rows={6}
-          value={CreateValue.Text}
-          onChange={(e) => HandleChange(e)}
-          placeholder="Enter blog content. If you want to use AI to Generate then Give it a reasonable prompt"
+          onChange={HandleChange}
+          value={CreateValue.Text || ''} // Ensure value is not undefined
+          placeholder={PlaceHolder.Text}
           className="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-dusty-rose"
         />
       </div>
-      {/* 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="image" className="text-lg font-medium text-gray-700">
-            Image
-          </label>
-          <input
-            id="image"
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            className="file:border file:border-gray-300 file:rounded-lg file:px-4 file:py-2 file:text-gray-700 file:bg-gray-50 file:hover:bg-gray-100"
-          />
-        </div> */}
+      <FileField onChange={HandleChange} Text="Add A Picture In Your Blog" />
     </>
   )
 }
