@@ -1,31 +1,37 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import SignUpTextFields from './SignupFields'
 import { InputValues } from '@/utils/SignupInterface'
 import { RegisterUser } from '@/functions/AUTH/RegisterUser'
+import { UserContext } from '@/utils/Context'
+import Loader from '../Loader'
 
 const SignUp = () => {
-  const [inputVal, setInputVal] = useState<InputValues>({
-    email: '',
-    password: '',
-    Name: '',
-    Image: null,
-  })
+  const Router = useRouter()
+  const { inputVal, setInputVal, loading, setLoading } = useContext(UserContext)
   const HandleSignup = async () => {
+    setLoading(true)
     const Data = await RegisterUser(inputVal)
     if (Data) {
       Router.push('/login')
+      setInputVal({
+        email: '',
+        password: '',
+        Name: '',
+        Image: null,
+      })
+      setLoading(false)
     }
   }
-  const Router = useRouter()
+  if (loading) return <Loader />
 
   return (
     <div className="flex flex-col bg-gray-800 p-6 rounded-lg shadow-lg max-w-md mx-auto ">
       <h2 className="text-2xl text-white font-semibold text-center mb-4">
         Sign Up
       </h2>
-      <SignUpTextFields inputVal={inputVal} setInputVal={setInputVal} />
+      <SignUpTextFields />
       <button
         onClick={HandleSignup}
         className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg shadow-md transition-all duration-300 mt-4"
