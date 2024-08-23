@@ -9,17 +9,18 @@ const ShowingUser = ({ User }: { User: UserDetails }) => {
   return (
     <div className="relative text-white">
       <div
-        className="flex items-center cursor-pointer  gap-2"
+        className="flex items-center cursor-pointer gap-2"
         onMouseEnter={() => setDropdownOpen(true)}
+        onClick={() => setDropdownOpen(!dropdownOpen)}
       >
         <Image
           src={User.imageUrl}
           alt="IMAGE"
-          className=" rounded-xl"
+          className="rounded-xl"
           width={30}
           height={40}
         />
-        <h6 className="text-base capitalize">{User.Name}</h6>
+        <h6 className="text-xs sm:text-base capitalize">{User.Name}</h6>
       </div>
       {dropdownOpen && <UserDropDown setDropdownOpen={setDropdownOpen} />}
     </div>
