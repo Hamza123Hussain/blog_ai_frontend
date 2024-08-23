@@ -2,7 +2,6 @@
 import CreateBlogFields from '@/components/Blog/CreateBlogFields'
 import Loader from '@/components/Loader'
 import { CreateWithAI } from '@/functions/Blog/CallingAI'
-
 import { GETDoc } from '@/functions/Blog/GettingDoc'
 import { UpdateBlogs } from '@/functions/Blog/UpdateBlog'
 import { BlogCreate } from '@/utils/BlogCreation'
@@ -12,19 +11,25 @@ import React, { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 const UpdateBlog = ({ params }: { params: any }) => {
-  const { loading, setLoading } = useContext(UserContext)
+  const { loading, setLoading, userData } = useContext(UserContext)
   const [CreateValue, SetValue] = useState<BlogCreate>({
     Title: '',
     Image: null,
     Text: '',
   })
   const Router = useRouter()
-
+  console.log('USER DATA : ', userData)
   const handleSubmit = async () => {
-    const Data = await UpdateBlogs(CreateValue.Text, params.ID)
+    const Data = await UpdateBlogs(
+      CreateValue.Text,
+      CreateValue.Title,
+      params.ID,
+      CreateValue.Image,
+      userData.email
+    )
     if (Data) {
       toast.success('BLOG UPDATED')
-      Router.push('/DashBoard')
+      Router.push('/dashboard')
     }
   }
   const gETDATA = async () => {
