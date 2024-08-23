@@ -35,7 +35,9 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
           <Toaster />
         </main>
       ) : (
-        <Login />
+        <div className=" flex flex-col">
+          <LandingPage />
+        </div>
       )}
     </>
   )
