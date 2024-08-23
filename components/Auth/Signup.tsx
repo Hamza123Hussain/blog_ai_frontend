@@ -26,8 +26,8 @@ const SignUp = () => {
   if (loading) return <Loader />
 
   return (
-    <div className="flex flex-col bg-gray-800 p-6 rounded-lg shadow-lg max-w-md mx-auto ">
-      <h2 className="text-2xl text-white font-semibold text-center mb-4">
+    <div className="flex flex-col bg-gray-800 p-6 rounded-lg shadow-lg w-[80vw] mx-auto ">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-center text-white mb-6 ">
         Sign Up
       </h2>
       <SignUpTextFields />
