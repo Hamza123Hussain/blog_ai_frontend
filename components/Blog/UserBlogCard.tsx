@@ -18,7 +18,7 @@ const UserBlogCard = ({ Blog }: { Blog: BLOG }) => {
   }
 
   return (
-    <div className="flex mx-auto flex-col w-[90vw]  justify-center border border-gray-300 rounded-lg shadow-lg bg-white mb-6">
+    <div className="flex mx-auto flex-col w-[80vw]  justify-center border border-gray-300 rounded-lg shadow-lg bg-white mb-6">
       {/* Blog Image */}
       {Blog.BlogImageURL && (
         <div className="mb-4">
