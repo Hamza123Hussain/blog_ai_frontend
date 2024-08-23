@@ -31,6 +31,7 @@ const UpdateBlog = ({ params }: { params: any }) => {
     setLoading(true)
     const Data = await GETDoc(params.ID)
     if (Data) {
+      console.log('API RESPONBDED ', Data)
       SetValue((prev: any) => ({ ...prev, Title: Data.Title, Text: Data.Text }))
       setLoading(false)
     }
@@ -42,7 +43,8 @@ const UpdateBlog = ({ params }: { params: any }) => {
       SetValue((element) => ({
         ...element,
         Title: Data.Title,
-        Text: Data.Description,
+        Text: Data.Text,
+        Image: Data.BlogImageURL,
       }))
       setLoading(false)
     }
@@ -53,10 +55,19 @@ const UpdateBlog = ({ params }: { params: any }) => {
   if (loading) {
     return <Loader />
   }
+  const PlaceHolder = {
+    Title:
+      'Write A Title Here. If You want AI to generate a title then give it a reasonable prompt.',
+    Text: 'Write A Descritpion Here. If You want AI to generate a description then give it a reasonable prompt',
+  }
   return (
     <div className="w-full  bg-white p-8 rounded-lg shadow-md">
       <h2 className="text-3xl font-semibold text-gray-800 mb-6">Update Blog</h2>
-      <CreateBlogFields CreateValue={CreateValue} SetValue={SetValue} />
+      <CreateBlogFields
+        PlaceHolder={PlaceHolder}
+        CreateValue={CreateValue}
+        SetValue={SetValue}
+      />
       <div className=" flex gap-2 items-center mt-4">
         {' '}
         <button
