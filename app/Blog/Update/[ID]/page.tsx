@@ -18,7 +18,7 @@ const UpdateBlog = ({ params }: { params: any }) => {
     Text: '',
   })
   const Router = useRouter()
-  console.log('USER DATA : ', userData)
+
   const handleSubmit = async () => {
     const Data = await UpdateBlogs(
       CreateValue.Text,
