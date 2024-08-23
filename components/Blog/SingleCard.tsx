@@ -12,7 +12,7 @@ const SingleCard = ({ Blog }: { Blog: any }) => {
   return (
     <div className="w-[80vw]  mx-auto border border-gray-300 rounded-lg shadow-sm bg-white overflow-hidden mb-4">
       {/* User Details and Title */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-2 border-b border-gray-200">
+      <div className="flex flex-col items-start  gap-4 justify-between p-2 border-b border-gray-200">
         {/* User Details */}
         <div className="flex items-center mb-2 sm:mb-0 ">
           <Image
@@ -37,7 +37,7 @@ const SingleCard = ({ Blog }: { Blog: any }) => {
         </div>
 
         {/* Blog Title */}
-        <div className="flex-1 sm:ml-4">
+        <div className="flex-1 ">
           <h2 className="text-sm sm:text-lg font-bold text-gray-900">
             {Blog?.Title}
           </h2>
