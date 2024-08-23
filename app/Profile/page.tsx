@@ -1,64 +1,60 @@
 'use client'
-import { UserContext } from '@/utils/Context'
-import React, { useContext, useState } from 'react'
-import { CreateBlog } from '@/functions/Blog/CreatingABlog'
-import { useRouter } from 'next/navigation'
-import toast from 'react-hot-toast'
-import { BlogCreate } from '@/utils/BlogCreation'
 import CreateBlogFields from '@/components/Blog/CreateBlogFields'
+import Loader from '@/components/Loader'
+import { getUser } from '@/functions/Blog/GettingUser'
+import { UpdateBlogs } from '@/functions/Blog/UpdateBlog'
+import { BlogCreate } from '@/utils/BlogCreation'
+import { UserContext } from '@/utils/Context'
+import { UserDetails } from '@/utils/UserInterface'
+import { useRouter } from 'next/navigation'
+import React, { useContext, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
-const UpdateProfile = () => {
-  const { userData } = useContext(UserContext)
-  const [CreateValue, SetValue] = useState<BlogCreate>({
-    Title: '',
-    Image: null,
-    Text: '',
+const UpdateBlog = ({ params }: { params: any }) => {
+  const { loading, setLoading, userData } = useContext(UserContext)
+  const [CreateValue, SetValue] = useState<UserDetails>({
+    Name: '',
+    CreatedAt: '',
+    email: '',
+    userID: '',
+    imageUrl: '',
   })
-
   const Router = useRouter()
-  const PlaceHolder = {
-    Title: 'Enter Blog Title',
-    Text: 'Enter Description For Your Blog',
-  }
-  const handleSubmit = async () => {
-    const GetData = await CreateBlog(
-      CreateValue.Text,
-      userData.Name,
-      CreateValue.Title,
-      userData.email,
-      userData.imageUrl,
-      CreateValue.Image,
-      userData.Name
-    )
-    if (GetData) {
-      toast.success('BLOG HAS BEEN CREATED')
-      Router.push('/')
+  console.log('USER DATA : ', userData)
+
+  const gETDATA = async () => {
+    setLoading(true)
+    const Data = await getUser(userData.userID)
+    if (Data) {
+      console.log('API RESPONBDED ', Data)
+      SetValue((prev: UserDetails) => ({
+        ...prev,
+        Name: Data.Name,
+        imageUrl: Data.imageUrl ? Data.imageUrl : prev.imageUrl,
+      }))
+      setLoading(false)
     }
+  }
+  useEffect(() => {
+    gETDATA()
+  }, [])
+  if (loading) {
+    return <Loader />
   }
 
   return (
-    <div className="flex flex-col items-center bg-gray-100 p-8 rounded-lg shadow-lg max-w-3xl mx-auto my-10">
-      <h1 className="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to from-orange-800  to-gray-300">
-        Create a New Blog With AI
-      </h1>
-      <div className="w-full space-y-6">
-        <CreateBlogFields
-          CreateValue={CreateValue}
-          SetValue={SetValue}
-          PlaceHolder={PlaceHolder}
-        />
-        <div className=" flex gap-2">
-          {' '}
-          <button
-            onClick={handleSubmit}
-            className="w-full bg-customBg text-white py-3 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-dusty-rose"
-          >
-            Submit
-          </button>
-        </div>
+    <div className="w-full  bg-white p-8 rounded-lg shadow-md">
+      <h2 className="text-3xl font-semibold text-gray-800 mb-6">Update User</h2>
+      {CreateValue.Name}
+
+      <div className=" flex gap-2 items-center mt-4">
+        {' '}
+        <button className="w-full bg-customBg text-white py-3 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-customBg">
+          Update Profile
+        </button>{' '}
       </div>
     </div>
   )
 }
 
-export default UpdateProfile
+export default UpdateBlog
