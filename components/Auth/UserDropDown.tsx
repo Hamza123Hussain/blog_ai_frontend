@@ -7,6 +7,7 @@ import React, { useContext } from 'react'
 const UserDropDown = ({ setDropdownOpen }: { setDropdownOpen: any }) => {
   const { setUserData } = useContext(UserContext)
   const Router = useRouter()
+
   const ByeBye = async () => {
     try {
       const Data = await SignOut()
@@ -18,10 +19,12 @@ const UserDropDown = ({ setDropdownOpen }: { setDropdownOpen: any }) => {
       console.log('ERROR IN FUNCTION', error)
     }
   }
+
   return (
     <div
       onMouseLeave={() => setDropdownOpen(false)}
-      className="absolute right-0 mt-2 w-48 bg-white text-black shadow-md rounded-lg z-10"
+      className="absolute right-0 mt-2 w-48 bg-white text-black shadow-md rounded-lg z-10 sm:hover:block"
+      onClick={() => setDropdownOpen(false)}
     >
       <Link
         href="/DashBoard"
