@@ -1,57 +1,78 @@
 'use client'
-import CreateBlogFields from '@/components/Blog/CreateBlogFields'
+import UserDetail from '@/components/Auth/UserDetails'
 import Loader from '@/components/Loader'
-import { getUser } from '@/functions/Blog/GettingUser'
-import { UpdateBlogs } from '@/functions/Blog/UpdateBlog'
-import { BlogCreate } from '@/utils/BlogCreation'
+import updateUserProfile from '@/functions/AUTH/UpdateUserDetails'
 import { UserContext } from '@/utils/Context'
-import { UserDetails } from '@/utils/UserInterface'
 import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-
 const UpdateBlog = () => {
-  const { loading, setLoading, userData } = useContext(UserContext)
-  const [CreateValue, SetValue] = useState<UserDetails>({
-    Name: '',
-    CreatedAt: '',
-    email: '',
-    userID: '',
-    imageUrl: '',
-  })
+  const { loading, setLoading, userData, setUserData } = useContext(UserContext)
   const Router = useRouter()
-  console.log('USER DATA : ', userData)
-
-  const gETDATA = async () => {
-    setLoading(true)
-    const Data = await getUser(userData.userID)
-    if (Data) {
-      console.log('API RESPONBDED ', Data)
-      SetValue((prev: UserDetails) => ({
-        ...prev,
-        Name: Data.Name,
-        imageUrl: Data.imageUrl ? Data.imageUrl : prev.imageUrl,
-      }))
-      setLoading(false)
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setImageFile(e.target.files[0])
     }
   }
-  useEffect(() => {
-    gETDATA()
-  }, [])
+  const handleUpdateProfile = async () => {
+    setLoading(true)
+    try {
+      const Data = await updateUserProfile(
+        userData.Name,
+        userData.email,
+        userData.userID,
+        imageFile
+      )
+      //   console.log('API RESPONDED', Data)
+      if (Data) {
+        setUserData((element: any) => ({
+          ...element,
+          Name: Data.Name,
+          imageUrl: Data.imageUrl ? Data.imageUrl : element.imageUrl,
+        }))
+        setLoading(false)
+      }
+    } catch (error) {}
+  }
   if (loading) {
     return <Loader />
   }
-
   return (
-    <div className="w-full  bg-white p-8 rounded-lg shadow-md">
+    <div className="max-w-lg mx-auto bg-white p-8 rounded-lg hover:shadow-lg shadow-slate-800 my-5 border-2">
       <h2 className="text-3xl font-semibold text-gray-800 mb-6">Update User</h2>
-      {CreateValue.Name}
 
-      <div className=" flex gap-2 items-center mt-4">
-        {' '}
-        <button className="w-full bg-customBg text-white py-3 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-customBg">
+      <UserDetail />
+      {/* File Upload Field */}
+      <div className="mb-4">
+        <label className="block text-gray-700 font-medium mb-2" htmlFor="file">
+          Upload Image
+        </label>
+        <input
+          type="file"
+          id="file"
+          onChange={handleFileChange}
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-customBg"
+        />
+        {/* Display selected image */}
+        {userData.imageUrl && (
+          <div className="mb-4">
+            <img
+              src={userData.imageUrl}
+              alt={userData.Name}
+              className="w-full h-auto rounded-lg"
+            />
+          </div>
+        )}
+      </div>
+      {/* Update Profile Button */}
+      <div className="flex gap-2 items-center mt-4">
+        <button
+          onClick={handleUpdateProfile}
+          className="w-full bg-customBg text-white py-3 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-customBg"
+        >
           Update Profile
-        </button>{' '}
+        </button>
       </div>
     </div>
   )
