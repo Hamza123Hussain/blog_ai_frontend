@@ -19,7 +19,7 @@ const Navbar = () => {
   if (!isClient) return null
 
   return (
-    <div className="bg-customBg px-2 flex justify-between items-center">
+    <div className="bg-blue-200 px-2 flex justify-between items-center">
       <Link href={'/'}>
         <div className="flex items-center gap-2 cursor-pointer">
           <Image
@@ -29,7 +29,7 @@ const Navbar = () => {
             height={40}
             className="rounded-full"
           />
-          <h3 className="text-base text-white">Thought Flow</h3>
+          <h3 className=" text-xs sm:text-base text-white">Thought Flow</h3>
         </div>
       </Link>
       {userData ? (
