@@ -10,9 +10,9 @@ const BlogCard = ({ Blog }: { Blog: BLOG }) => {
   const Router = useRouter()
 
   return (
-    <div className="  w-[80vw] mx-auto border border-gray-300 rounded-lg shadow-md bg-white overflow-hidden mb-4">
+    <div className=" w-[70vw]  sm:w-[50vw] mx-auto border border-gray-300 rounded-lg shadow-md bg-slate-50 overflow-hidden mb-4">
       {Blog?.BlogImageURL && (
-        <div className="relative w-full">
+        <div className="relative w-[70vw] sm:w-fit mx-auto ">
           <Image
             src={Blog?.BlogImageURL}
             alt={Blog?.Title}
