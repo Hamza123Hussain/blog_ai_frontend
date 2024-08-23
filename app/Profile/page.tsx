@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
-const UpdateBlog = ({ params }: { params: any }) => {
+const UpdateBlog = () => {
   const { loading, setLoading, userData } = useContext(UserContext)
   const [CreateValue, SetValue] = useState<UserDetails>({
     Name: '',
