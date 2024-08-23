@@ -1,47 +1,80 @@
 import { BLOG } from '@/utils/BlogInterface'
+import { UserContext } from '@/utils/Context'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaRegCommentDots } from 'react-icons/fa'
 
 const BlogCard = ({ Blog }: { Blog: BLOG }) => {
+  const { userData } = useContext(UserContext)
   const Router = useRouter()
-  return (
-    <div className="flex flex-col w-full max-w-3xl justify-center p-6 border border-gray-300 rounded-lg shadow-lg bg-white">
-      <h2 className="text-2xl font-bold text-gray-900 mb-2">{Blog.Title}</h2>
 
-      <div className="flex flex-col sm:flex-row items-center justify-between mb-4">
-        <div className="flex gap-3 items-center">
+  return (
+    <div className="sm:w-[50vw]  w-[80vw] mx-auto border border-gray-300 rounded-lg shadow-md bg-white overflow-hidden mb-4">
+      {/* User Details and Title */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border-b border-gray-200 ">
+        {/* User Details */}
+        <div className="flex items-center mb-2 sm:mb-0">
           <Image
-            src={Blog.UserImage}
-            alt="Logo"
-            width={25}
-            height={10}
-            className="rounded-full"
+            src={Blog?.UserImage}
+            alt="User Avatar"
+            width={30}
+            height={30}
+            className="rounded-full border border-blue-300"
           />
-          <h6 className="text-lg font-semibold flex items-center gap-2 text-gray-800">
-            {Blog.CreatedBy}
-          </h6>
+          <div className="ml-3">
+            <p className="text-xs font-semibold text-blue-600">
+              {Blog?.CreatedBy}
+            </p>
+            <p className="text-xs text-gray-500">
+              {new Date(Blog?.CreatedAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })}
+            </p>
+          </div>
         </div>
-        <p className="text-gray-500">
-          Created At{' '}
-          {new Date(Blog.CreatedAt).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
+      </div>
+
+      {/* Blog Title */}
+      <div className="px-4 py-2 border-b border-gray-200">
+        <h2 className="text-xs sm:text-lg font-bold text-gray-900 mb-1">
+          {Blog?.Title}
+        </h2>
+      </div>
+
+      {/* Blog Image (if any) */}
+      {Blog?.BlogImageURL && (
+        <div className="relative w-full">
+          <Image
+            src={Blog?.BlogImageURL}
+            alt={Blog?.Title}
+            layout="responsive"
+            width={800}
+            height={600}
+            className="w-full object-cover"
+          />
+        </div>
+      )}
+
+      {/* Blog Content */}
+      <div className="px-4 py-2">
+        <p className="text-xs sm:text-lg text-justify text-gray-800 mb-4">
+          {Blog?.Text}
         </p>
       </div>
 
-      <p className="text-md text-justify text-gray-800 mb-4 font-medium">
-        {Blog.Text}
-      </p>
-      <div className="flex justify-between items-center">
+      {/* Interaction Buttons */}
+      <div className="flex items-center justify-between px-4 py-2 border-t border-gray-200 ">
         <button
-          onClick={() => Router.push(`/Blog/Comments/${Blog.PostID}`)}
-          className="flex items-center gap-2 py-2 px-4 bg-customBg text-white rounded-lg hover:bg-rose-900 focus:outline-none"
+          onClick={() => Router.push(`/Blog/Comments/${Blog?.PostID}`)}
+          className="flex items-center gap-2 text-blue-600 hover:text-blue-800 focus:outline-none"
         >
-          <FaRegCommentDots /> View Comments
+          <FaRegCommentDots />
+          <span className="text-sm font-medium">
+            {Blog.comments.length} Comments
+          </span>
         </button>
       </div>
     </div>
