@@ -11,6 +11,18 @@ const BlogCard = ({ Blog }: { Blog: BLOG }) => {
 
   return (
     <div className="  w-[80vw] mx-auto border border-gray-300 rounded-lg shadow-md bg-white overflow-hidden mb-4">
+      {Blog?.BlogImageURL && (
+        <div className="relative w-full">
+          <Image
+            src={Blog?.BlogImageURL}
+            alt={Blog?.Title}
+            layout="responsive"
+            width={800}
+            height={600}
+            className="w-full object-cover"
+          />
+        </div>
+      )}
       {/* User Details and Title */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border-b border-gray-200 ">
         {/* User Details */}
@@ -45,18 +57,6 @@ const BlogCard = ({ Blog }: { Blog: BLOG }) => {
       </div>
 
       {/* Blog Image (if any) */}
-      {Blog?.BlogImageURL && (
-        <div className="relative w-full">
-          <Image
-            src={Blog?.BlogImageURL}
-            alt={Blog?.Title}
-            layout="responsive"
-            width={800}
-            height={600}
-            className="w-full object-cover"
-          />
-        </div>
-      )}
 
       {/* Blog Content */}
       <div className="px-4 py-2">
