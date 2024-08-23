@@ -1,11 +1,9 @@
 'use client'
 import BlogCard from '@/components/Blog/BlogCard'
-import LandingPage from '@/components/LandingPage'
 import Loader from '@/components/Loader'
 import { GettingAllBlogs } from '@/functions/Blog/GettingAll'
 import { BLOG } from '@/utils/BlogInterface'
-import { UserContext } from '@/utils/Context'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
   const [AllBlogs, SetBlogs] = useState<BLOG[]>([])
