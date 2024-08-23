@@ -7,7 +7,7 @@ const ShowingUser = ({ User }: { User: UserDetails }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   return (
-    <div className="relative text-white">
+    <div className=" px-2 relative text-white">
       <div
         className="flex items-center cursor-pointer gap-2"
         onMouseEnter={() => setDropdownOpen(true)}
