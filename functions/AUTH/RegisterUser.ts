@@ -21,6 +21,7 @@ export const RegisterUser = async (inputValues: InputValues) => {
     const response = await axios.post(`${APIURL}/api/Users`, formData)
 
     if (response.status === 201) {
+      console.log('API HAS RESPONDED ', response.data)
       return response.data
     } else if (
       response.status === 400 &&
