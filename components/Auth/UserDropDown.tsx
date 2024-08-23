@@ -13,7 +13,7 @@ const UserDropDown = ({ setDropdownOpen }: { setDropdownOpen: any }) => {
       const Data = await SignOut()
       if (Data) {
         setUserData('')
-        Router.push('/login')
+        Router.push('/Login')
       }
     } catch (error) {
       console.log('ERROR IN FUNCTION', error)

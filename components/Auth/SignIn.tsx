@@ -48,14 +48,14 @@ const SignIn = () => {
       </button>
       <div
         className=" flex justify-end text-white mt-1 hover:text-blue-900 cursor-pointer"
-        onClick={() => Router.push('/forgotpass')}
+        onClick={() => Router.push('/Forgotpass')}
       >
         <span className=" text-[10px]">Forgot Your Password?</span>
       </div>
       <h6 className="text-xs mt-4 text-gray-400 text-center">
         Don’t Have An Account?{' '}
         <span
-          onClick={() => Router.push('/signup')}
+          onClick={() => Router.push('/Signup')}
           className="underline cursor-pointer text-green-300 hover:text-green-200"
         >
           Sign Up
