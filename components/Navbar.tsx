@@ -29,14 +29,14 @@ const Navbar = () => {
             height={40}
             className="rounded-full"
           />
-          <h3 className=" text-xs sm:text-base text-white">Thought Flow</h3>
+          <h3 className="text-xs sm:text-base text-white">Thought Flow</h3>
         </div>
       </Link>
       {userData ? (
         <ShowingUser User={userData} />
       ) : (
         <button
-          onClick={() => Router.push('/Login')}
+          onClick={() => Router.push('/login')}
           className="bg-green-300 px-7 border-white hover:bg-white hover:text-black text-white rounded-lg"
         >
           Login
