@@ -7,7 +7,8 @@ export const CreateBlog = async (
   title: string,
   email: string,
   UserImage: string,
-  BlogImage: File | null
+  BlogImage: File | null,
+  UserName: string
 ) => {
   try {
     const formdata = new FormData()
@@ -19,6 +20,7 @@ export const CreateBlog = async (
     if (BlogImage) {
       formdata.append('BlogImage', BlogImage)
     }
+    formdata.append('UserName', UserName)
 
     const Response = await axios.post(`${APIURL}/api/Posts`, formdata)
 
