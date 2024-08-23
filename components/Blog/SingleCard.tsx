@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import React, { useContext } from 'react'
 import { FaRegCommentDots } from 'react-icons/fa'
 
-const SingleCard = ({ Blog }: { Blog: BLOG }) => {
+const SingleCard = ({ Blog }: { Blog: any }) => {
   const { userData } = useContext(UserContext)
   const Router = useRouter()
 
