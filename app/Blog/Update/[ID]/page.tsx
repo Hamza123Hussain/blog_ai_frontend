@@ -49,7 +49,7 @@ const UpdateBlog = ({ params }: { params: any }) => {
         ...element,
         Title: Data.Title,
         Text: Data.Text,
-        Image: Data.BlogImageURL,
+        Image: Data.BlogImageURL ? Data.BlogImageURL : element.Image, // Corrected line
       }))
       setLoading(false)
     }
