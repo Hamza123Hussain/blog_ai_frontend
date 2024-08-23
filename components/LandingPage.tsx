@@ -20,7 +20,7 @@ const LandingPage = () => {
           </div>
         </div>
         <Link
-          href={'/login'}
+          href={'/Login'}
           className="bg-customBg text-center text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-rose-200"
         >
           Get Started
