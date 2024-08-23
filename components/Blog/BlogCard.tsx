@@ -10,7 +10,7 @@ const BlogCard = ({ Blog }: { Blog: BLOG }) => {
   const Router = useRouter()
 
   return (
-    <div className="sm:w-[50vw]  w-[80vw] mx-auto border border-gray-300 rounded-lg shadow-md bg-white overflow-hidden mb-4">
+    <div className="  w-[80vw] mx-auto border border-gray-300 rounded-lg shadow-md bg-white overflow-hidden mb-4">
       {/* User Details and Title */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border-b border-gray-200 ">
         {/* User Details */}
