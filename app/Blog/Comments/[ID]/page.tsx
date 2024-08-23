@@ -47,9 +47,9 @@ const BlogWithComments = ({ params }: { params: any }) => {
   }
   return (
     <div className="w-full bg-white p-8 rounded-lg shadow-md">
-      <h2 className="text-3xl font-semibold text-gray-800 mb-6">Update Blog</h2>
-      <SingleCard element={element} />
+      <SingleCard Blog={element} />
       <div className="flex flex-col gap-4">
+        <h1 className=" text-2xl font-extrabold p-2"> Comments</h1>
         <textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
@@ -57,17 +57,17 @@ const BlogWithComments = ({ params }: { params: any }) => {
           rows={1}
           className="w-full p-2 border border-gray-300 rounded-lg resize-none"
         />
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           {' '}
           <button
             onClick={callAi}
-            className="py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none"
+            className="py-2 text-sm sm:text-base px-4 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none"
           >
             Generate Comment with AI
           </button>
           <button
             onClick={handleAddComment}
-            className="py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none"
+            className="py-2 px-4 text-sm sm:text-base bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none"
           >
             Add Comment
           </button>
