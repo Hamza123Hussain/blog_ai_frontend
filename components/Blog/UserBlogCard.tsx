@@ -4,9 +4,11 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { FaRegCommentDots } from 'react-icons/fa'
+import Image from 'next/image'
 
 const UserBlogCard = ({ Blog }: { Blog: BLOG }) => {
   const Router = useRouter()
+
   const DeleteDoc = async () => {
     const Removed = await RemoveBlog(Blog.PostID)
     if (Removed) {
@@ -14,15 +16,36 @@ const UserBlogCard = ({ Blog }: { Blog: BLOG }) => {
       window.location.reload()
     }
   }
-  return (
-    <div className="flex flex-col w-full  justify-center p-6 border border-gray-300 rounded-lg shadow-lg bg-white">
-      <h2 className="text-2xl font-bold text-gray-900 mb-2">{Blog.Title}</h2>
 
-      <div className="flex flex-col sm:flex-row items-center justify-between mb-4">
+  return (
+    <div className="flex mx-auto flex-col w-[90vw]  justify-center border border-gray-300 rounded-lg shadow-lg bg-white mb-6">
+      {/* Blog Image */}
+      {Blog.BlogImageURL && (
+        <div className="mb-4">
+          <Image
+            src={Blog.BlogImageURL}
+            alt={Blog.Title}
+            width={600}
+            height={400}
+            className=" w-full"
+          />
+        </div>
+      )}
+
+      {/* Blog Title */}
+      <h2 className="p-4  text-2xl font-bold text-gray-900 mb-2">
+        {Blog.Title}
+      </h2>
+
+      {/* User Details and Date */}
+      <div className="p-4  flex flex-col sm:flex-row items-center justify-between mb-4">
         <div className="flex gap-3 items-center">
-          <img
-            src="https://www.brandsynario.com/wp-content/uploads/2024/03/Hania-Amir-2.jpg"
-            alt="demo"
+          <Image
+            src={
+              Blog.UserImage ||
+              'https://www.brandsynario.com/wp-content/uploads/2024/03/Hania-Amir-2.jpg'
+            }
+            alt={Blog.UserName || 'User Image'}
             width={50}
             height={50}
             className="rounded-full border-2 border-gray-200"
@@ -31,7 +54,7 @@ const UserBlogCard = ({ Blog }: { Blog: BLOG }) => {
             {Blog.UserName}
           </h6>
         </div>
-        <p className="text-gray-500">
+        <p className="text-gray-500 text-sm sm:text-base">
           Created At{' '}
           {new Date(Blog.CreatedAt).toLocaleDateString('en-US', {
             year: 'numeric',
@@ -41,23 +64,29 @@ const UserBlogCard = ({ Blog }: { Blog: BLOG }) => {
         </p>
       </div>
 
-      <p className="text-md text-justify text-gray-800 mb-4 font-medium">
+      {/* Blog Content */}
+      <p className="text-md p-4  text-justify text-gray-800 mb-4 font-medium">
         {Blog.Text}
       </p>
-      <div className="flex sm:flex-row flex-col gap-5  justify-between items-center">
-        <button className="flex items-center gap-2 py-2 px-4 bg-customBg text-white rounded-lg hover:bg-rose-900 focus:outline-none">
+
+      {/* Buttons and Actions */}
+      <div className="flex p-4  sm:flex-row flex-col gap-5 justify-between items-center">
+        <button
+          onClick={() => Router.push(`/Blog/Comments/${Blog?.PostID}`)}
+          className="flex items-center gap-2 py-2 px-4 bg-customBg text-white rounded-lg hover:bg-rose-900 focus:outline-none"
+        >
           <FaRegCommentDots /> View Comments
         </button>
-        <div className=" flex gap-2 items-center">
+        <div className="flex gap-2 items-center">
           <button
             onClick={() => Router.push(`/Blog/Update/${Blog.PostID}`)}
-            className=" bg-blue-600 px-6 py-1 text-white rounded-lg"
+            className="bg-blue-600 px-6 py-1 text-white rounded-lg hover:bg-blue-700 focus:outline-none"
           >
             Update
-          </button>{' '}
+          </button>
           <button
             onClick={DeleteDoc}
-            className=" bg-red-600 px-6 py-1 text-white rounded-lg"
+            className="bg-red-600 px-6 py-1 text-white rounded-lg hover:bg-red-700 focus:outline-none"
           >
             Delete
           </button>
