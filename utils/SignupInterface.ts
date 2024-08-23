@@ -4,4 +4,4 @@ export interface InputValues {
   Name: string
   Image: File | null
 }
-export const APIURL = 'https://blog-ai-backend.vercel.app'
+export const APIURL = 'http://localhost:5000'
