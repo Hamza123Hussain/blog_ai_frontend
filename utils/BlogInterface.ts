@@ -8,6 +8,7 @@ export interface BLOG {
   id: string
   UserName: string
   UserImage: string
+  BlogImageURL: string
 }
 export interface CommentData {
   CommentID: string
