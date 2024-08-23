@@ -16,7 +16,7 @@ const Footer = () => {
           />
           <h4 className="text-xl font-bold mb-2">Thought Flow</h4>
         </div>
-        <p>
+        <p className=" text-sm sm:text-lg">
           &copy; {new Date().getFullYear()} Thought Flow. All rights reserved.
         </p>
       </div>
