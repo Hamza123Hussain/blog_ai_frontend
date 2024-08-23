@@ -53,7 +53,7 @@ const SingleCard = ({ Blog }: { Blog: any }) => {
             layout="responsive"
             width={800} // Dynamic width, change to suit your layout
             height={600} // Dynamic height, change to suit your layout
-            className="w-full"
+            className="w-full rounded-t-lg"
           />
         </div>
       )}

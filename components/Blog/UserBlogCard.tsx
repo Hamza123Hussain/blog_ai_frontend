@@ -27,7 +27,7 @@ const UserBlogCard = ({ Blog }: { Blog: BLOG }) => {
             alt={Blog.Title}
             width={600}
             height={400}
-            className=" w-full"
+            className=" w-full rounded-t-lg"
           />
         </div>
       )}

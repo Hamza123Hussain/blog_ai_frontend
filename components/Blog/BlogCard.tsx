@@ -19,7 +19,7 @@ const BlogCard = ({ Blog }: { Blog: BLOG }) => {
             layout="responsive"
             width={800}
             height={600}
-            className="w-full object-cover"
+            className="w-full object-cover rounded-t-lg"
           />
         </div>
       )}
