@@ -23,7 +23,9 @@ export default function RootLayout({
         <ContextProvider>
           <div className="flex flex-col min-h-screen">
             <Navbar />
-            <ConditionalLayout>{children}</ConditionalLayout>
+            <div className="flex-1">
+              <ConditionalLayout>{children}</ConditionalLayout>
+            </div>
             <Footer />
           </div>
         </ContextProvider>
