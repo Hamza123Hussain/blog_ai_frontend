@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { GettingUserBlogs } from '@/functions/Blog/GettingUserBlogs'
+import fetchUserPosts from '@/functions/Blog/GettingUserBlogs'
 import { BLOG } from '@/utils/BlogInterface'
 import { UserContext } from '@/utils/Context'
 import UserBlogCard from './UserBlogCard'
@@ -15,7 +15,7 @@ const UserBlogs = () => {
   useEffect(() => {
     const GetUserBlogs = async () => {
       setLoading(true)
-      const Data = await GettingUserBlogs(userData.Name)
+      const Data = await fetchUserPosts(userData.Name)
       console.log(Data)
       if (Data) {
         setBlogs(Data)
