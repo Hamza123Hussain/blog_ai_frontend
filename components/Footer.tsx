@@ -3,8 +3,8 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-50 text-gray-500 py-1 border-t border-black  shadow-md">
-      <div className="text-center flex flex-col justify-center items-center ">
+    <footer className="bg-gray-50 text-gray-500 py-1 border-t border-black  shadow-md px-2">
+      <div className="text-center flex  flex-col sm:flex-row  justify-between items-center ">
         {' '}
         <div className="flex  items-center">
           <Image
