@@ -8,10 +8,10 @@ const FileField = ({
   Text: string
 }) => {
   return (
-    <div className="bg-transparent border-slate-300 border-2 p-4 rounded-lg shadow-md">
+    <div className="bg-transparent   shadow-black border-2 p-4 rounded-lg ">
       <label
         htmlFor="profile-image"
-        className="block text-gray-500 text-lg font-semibold mb-2"
+        className="block text-gray-100 text-lg font-semibold mb-2"
       >
         {Text}
       </label>
