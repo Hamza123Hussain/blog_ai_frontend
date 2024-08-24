@@ -3,7 +3,7 @@ import React from 'react'
 
 const Register = () => {
   return (
-    <div className=" mx-auto p-3 mt-5">
+    <div className=" mx-auto p-3 ">
       {' '}
       <SignUp />
     </div>
