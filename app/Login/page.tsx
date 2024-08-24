@@ -3,7 +3,7 @@ import React from 'react'
 
 const Login = () => {
   return (
-    <div className="  mt-5 mx-auto">
+    <div className=" flex justify-center items-center h-[80vh]  mx-auto">
       <SignIn />
     </div>
   )
