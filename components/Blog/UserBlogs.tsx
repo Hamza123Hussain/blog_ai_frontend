@@ -11,18 +11,19 @@ const UserBlogs = () => {
   const { userData, setLoading, loading } = useContext(UserContext)
   const [UserBlogs, setBlogs] = useState<BLOG[]>([])
   const Router = useRouter()
-
+  console.log(userData.Name)
   useEffect(() => {
     const GetUserBlogs = async () => {
       setLoading(true)
       const Data = await GettingUserBlogs(userData.Name)
+      console.log(Data)
       if (Data) {
         setBlogs(Data)
         setLoading(false)
       }
     }
     GetUserBlogs()
-  }, [userData.email, setLoading])
+  }, [])
 
   if (loading) {
     return <Loader />
