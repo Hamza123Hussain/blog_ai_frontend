@@ -26,9 +26,9 @@ const SignIn = () => {
   }
 
   return (
-    <div className="flex flex-col bg-gradient-to-t from-blue-200 to-[#BFD8FE] p-6 rounded-lg shadow-lg mx-auto w-[80vw] ">
+    <div className="flex flex-col bg-gradient-to-t from-blue-200 to-[#BFD8FE] p-6 rounded-lg shadow-lg mx-auto w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl sm:p-8">
       {/* Heading */}
-      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-center text-white mb-6 ">
+      <h2 className="text-2xl text-center text-black mb-6 sm:text-3xl md:text-4xl lg:text-5xl">
         Sign In
       </h2>
 
@@ -39,7 +39,7 @@ const SignIn = () => {
         name="email"
         value={inputVal.email}
         onChange={handleChange}
-        className="mb-4 p-3 w-full rounded bg-slate-50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-300"
+        className="mb-4 p-2 w-full rounded-xl bg-slate-50 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-300"
       />
 
       {/* Password Input */}
@@ -49,13 +49,13 @@ const SignIn = () => {
         name="password"
         value={inputVal.password}
         onChange={handleChange}
-        className="mb-4 p-3 w-full rounded bg-slate-50 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-300"
+        className="mb-4 p-2 w-full rounded-xl bg-slate-50 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-300"
       />
 
       {/* Sign In Button */}
       <button
         onClick={HandleLogin}
-        className="bg-white hover:bg-green-400 text-black hover:text-white font-semibold px-6 py-2 rounded transition-all w-full text-sm sm:text-base md:text-lg lg:text-xl"
+        className="bg-white hover:bg-blue-400 rounded-xl text-black hover:text-white font-semibold px-6 py-2 transition-all w-full sm:w-3/4 md:w-2/3 lg:w-1/2 mx-auto text-sm sm:text-base md:text-lg"
       >
         Sign In
       </button>
@@ -65,13 +65,13 @@ const SignIn = () => {
         className="flex justify-end text-white mt-2 hover:text-blue-900 cursor-pointer"
         onClick={() => Router.push('/Forgotpass')}
       >
-        <span className="text-xs text-blue-600 sm:text-sm md:text-base">
+        <span className="text-xs text-blue-600 sm:text-xs ">
           Forgot Your Password?
         </span>
       </div>
 
       {/* Sign Up Link */}
-      <h6 className="text-xs mt-4 text-black text-center">
+      <h6 className="text-xs mt-6 text-black text-center">
         Don’t Have An Account?{' '}
         <span
           onClick={() => Router.push('/Signup')}
