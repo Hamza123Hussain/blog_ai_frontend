@@ -10,13 +10,13 @@ const Footer = () => {
           <Image
             src={'/Logo.png'}
             alt="Logo"
-            width={50}
-            height={40}
+            width={30}
+            height={30}
             className=" rounded-full"
           />
-          <h4 className="text-xl font-bold mb-2">Thought Flow</h4>
+          <h4 className="text-xs font-bold mb-2">Thought Flow</h4>
         </div>
-        <p className=" text-sm sm:text-lg">
+        <p className=" text-xs">
           &copy; {new Date().getFullYear()} Thought Flow. All rights reserved.
         </p>
       </div>
