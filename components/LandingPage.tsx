@@ -6,7 +6,7 @@ const LandingPage = () => {
     <div className="bg-gray-50 flex flex-col items-center  text-gray-900 my-5 min-h-screen gap-16 w-full">
       <div className=" flex flex-col gap-5 px-2">
         <div className=" flex items-center gap-3 px-2 text-sm sm:text-lg md:text-2xl  ">
-          <h2 className=" font-bold  text-customBg">Welcome to </h2>{' '}
+          <h2 className=" font-bold  text-blue-200">Welcome to </h2>{' '}
           <div className=" flex items-center">
             {' '}
             <Image
@@ -16,19 +16,19 @@ const LandingPage = () => {
               height={60}
               className="rounded-full w-8 sm:w-16"
             />{' '}
-            <span className='text-customBg  font-bold "'>Thought Flow</span>
+            <span className='text-blue-200  font-bold "'>Thought Flow</span>
           </div>
         </div>
         <Link
           href={'/Login'}
-          className="bg-customBg text-center text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-rose-200"
+          className="bg-blue-200 text-center text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-rose-200"
         >
           Get Started
         </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 mx-4 text-justify">
         <div className="bg-white p-6 rounded-lg shadow-lg ">
-          <h3 className="text-sm sm:text-xl font-semibold mb-4 text-customBg">
+          <h3 className="text-sm sm:text-xl font-semibold mb-4 text-blue-200">
             Create Blogs
           </h3>
           <p>
@@ -37,7 +37,7 @@ const LandingPage = () => {
           </p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h3 className="text-sm sm:text-xl font-semibold mb-4 text-customBg">
+          <h3 className="text-sm sm:text-xl font-semibold mb-4 text-blue-200">
             Comment and Like
           </h3>
           <p>
@@ -45,7 +45,7 @@ const LandingPage = () => {
           </p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h3 className="text-sm sm:text-xl font-semibold mb-4 text-customBg">
+          <h3 className="text-sm sm:text-xl font-semibold mb-4 text-blue-200">
             Suggest Topics
           </h3>
           <p>
@@ -53,7 +53,7 @@ const LandingPage = () => {
           </p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h3 className="text-sm sm:text-xl font-semibold mb-4 text-customBg">
+          <h3 className="text-sm sm:text-xl font-semibold mb-4 text-blue-200">
             AI-Powered Writing
           </h3>
           <p>
