@@ -5,6 +5,7 @@ import LandingPage from '../LandingPage'
 import { Toaster } from 'react-hot-toast'
 import { usePathname } from 'next/navigation'
 import Login from '@/app/Login/page'
+import Home from '@/app/page'
 
 const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   const { userData } = useContext(UserContext)
@@ -36,7 +37,7 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
         </main>
       ) : (
         <div className=" flex flex-col">
-          <LandingPage />
+          <Home />
         </div>
       )}
     </>

@@ -66,17 +66,21 @@ const BlogCard = ({ Blog }: { Blog: BLOG }) => {
       </div>
 
       {/* Interaction Buttons */}
-      <div className="flex items-center justify-between px-4 py-2 border-t border-gray-200 ">
-        <button
-          onClick={() => Router.push(`/Blog/Comments/${Blog?.PostID}`)}
-          className="flex items-center gap-2 text-blue-600 hover:text-blue-800 focus:outline-none"
-        >
-          <FaRegCommentDots />
-          <span className="text-sm font-medium">
-            {Blog.comments.length} Comments
-          </span>
-        </button>
-      </div>
+      {userData ? (
+        <div className="flex items-center justify-between px-4 py-2 border-t border-gray-200 ">
+          <button
+            onClick={() => Router.push(`/Blog/Comments/${Blog?.PostID}`)}
+            className="flex items-center gap-2 text-blue-600 hover:text-blue-800 focus:outline-none"
+          >
+            <FaRegCommentDots />
+            <span className="text-sm font-medium">
+              {Blog.comments.length} Comments
+            </span>
+          </button>
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   )
 }
