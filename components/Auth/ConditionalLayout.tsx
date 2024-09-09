@@ -30,16 +30,10 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      {isAuthPage || userData ? (
-        <main className="flex-grow flex">
-          {children}
-          <Toaster />
-        </main>
-      ) : (
-        <div className=" flex flex-col">
-          <Home />
-        </div>
-      )}
+      <main className="flex-grow flex">
+        {children}
+        <Toaster />
+      </main>
     </>
   )
 }
